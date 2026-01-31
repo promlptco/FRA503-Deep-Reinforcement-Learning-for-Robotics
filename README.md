@@ -16,7 +16,7 @@ This homework studies the **Isaac-Cartpole-v0** reinforcement learning task to:
 
 ---
 
-## Config file
+### Config file
 ```
 IsaacLab/source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/cartpole_env_cfg.py
 ```
