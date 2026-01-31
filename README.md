@@ -5,7 +5,7 @@
 - Sasish Kaewsing (6340500076)
 
 ## Goal
-Implement a multi-armed bandit framework from scratch, including ε-greedy and UCB algorithms, run systematic experiments on both Bernoulli and Gaussian environments, visualize performance, and determine convergence time.
+Implement a multi-armed bandit framework from scratch, including ε-greedy and UCB algorithms, run systematic experiments with multiple parameter values, visualize performance across all configurations, and analyze convergence behavior and cumulative regret.
 
 ---
 
@@ -16,11 +16,21 @@ Implement a multi-armed bandit framework from scratch, including ε-greedy and U
    ```bash
    pip install numpy matplotlib
    ```
-3. Run the experiment:
+3. Run all experiments:
    ```bash
-   python main.py
+   python run_all_experiments.py
    ```
-   
+
+**Alternative: Run Individual Experiments**
+- Run only Epsilon-Greedy experiments:
+  ```bash
+  python experiment_epsilon_greedy.py
+  ```
+- Run only UCB experiments:
+  ```bash
+  python experiment_ucb.py
+  ```
+
 ---
 
 ### Part 2: Parameter Definition
@@ -28,64 +38,121 @@ Implement a multi-armed bandit framework from scratch, including ε-greedy and U
 | Parameter               | Default | Description |
 |-------------------------|---------|-------------|
 | N_ARMS                  | 10      | Number of arms |
-| N_RUNS                  | 2000    | Number of independent runs (for averaging) |
-| N_STEPS                 | 1000    | Timesteps per experiment |
-| REWARD_TYPES            | ["bernoulli", "gaussian"] | Reward distributions to compare |
+| N_EXPERIMENTS           | 10000   | Number of independent runs (for averaging) |
+| N_STEPS                 | 500     | Timesteps per experiment |
+| BANDIT_PROBS            | [0.10, 0.50, 0.60, 0.80, 0.10, 0.25, 0.60, 0.45, 0.75, 0.65] | Bernoulli success probabilities for each arm |
 | EPSILON_VALS            | [0.0, 0.01, 0.05, 0.1, 0.5] | Exploration rates for ε-greedy |
-| UCB_C_VALS              | [0.0, 0.5, 1.0, 2.0, 5.0] | Exploration constants for UCB |
-| CONVERGENCE_THRESHOLD   | 0.85    | Threshold for convergence (85% optimal action) |
+| UCB_C_VALS              | [0.5, 1.0, 2.0, 3.0, 5.0] | Exploration constants for UCB |
+| CONVERGENCE_THRESHOLD   | 0.95    | Threshold for convergence (95% of optimal reward) |
 | ROLLING_WINDOW          | 50      | Window size for rolling average |
 
 **Convergence definition**:  
-The first timestep where the 50-step rolling average of % optimal action ≥ 85% and remains ≥ 85% until the end.
+The first timestep where the 50-step rolling average reward ≥ 95% of optimal reward and remains ≥ 95% until the end.
 
 ---
 
 ### Part 3: Configuration
 
-All experiment configurations are defined in `config.py`:
+All experiment configurations are defined in the experiment files:
 
+**Epsilon-Greedy** (`experiment_epsilon_greedy.py`):
 ```python
-# Main configurations
-EPSILON_VALS = [0.0, 0.01, 0.05, 0.1, 0.5]
-UCB_C_VALS   = [0.5, 1.0, 1.5, 2.0, 5.0]
-
-CONFIGS = (
-    [("eps", {"epsilon": eps}) for eps in EPSILON_VALS] +
-    [("ucb", {"c": c}) for c in UCB_C_VALS]
-)
+bandit_probs = [0.10, 0.50, 0.60, 0.80, 0.10,
+                0.25, 0.60, 0.45, 0.75, 0.65]
+epsilon_values = [0.0, 0.01, 0.05, 0.1, 0.5]
+n_experiments = 10000
+n_steps = 500
 ```
+
+**UCB** (`experiment_ucb.py`):
+```python
+bandit_probs = [0.10, 0.50, 0.60, 0.80, 0.10,
+                0.25, 0.60, 0.45, 0.75, 0.65]
+c_values = [0.5, 1.0, 2.0, 3.0, 5.0]
+n_experiments = 10000
+n_steps = 500
+```
+
 ---
 
 ### Part 4: Results Location
 
-All outputs are saved in the `figures/` folder, separated by reward type:
+All outputs are saved in the `output/` folder, separated by algorithm:
 
 ```
-figures/
-├── bernoulli/
-│   ├── average_reward.png
-│   ├── percent_optimal.png           # with convergence markers
-│   ├── cumulative_regret.png
-│   ├── action_selection_eps_best.png
-│   └── action_selection_ucb_best.png
-└── gaussian/
-    ├── average_reward.png
-    ├── percent_optimal.png
-    ├── cumulative_regret.png
-    ├── action_selection_eps_best.png
-    └── action_selection_ucb_best.png
+output/
+├── epsilon_greedy/
+│   ├── epsilon_0_0_reward.png           # Individual plots for ε=0.0
+│   ├── epsilon_0_0_optimal.png
+│   ├── epsilon_0_0_regret.png
+│   ├── epsilon_0_01_reward.png          # Individual plots for ε=0.01
+│   ├── epsilon_0_01_optimal.png
+│   ├── epsilon_0_01_regret.png
+│   ├── epsilon_0_05_reward.png          # Individual plots for ε=0.05
+│   ├── epsilon_0_05_optimal.png
+│   ├── epsilon_0_05_regret.png
+│   ├── epsilon_0_1_reward.png           # Individual plots for ε=0.1
+│   ├── epsilon_0_1_optimal.png
+│   ├── epsilon_0_1_regret.png
+│   ├── epsilon_0_5_reward.png           # Individual plots for ε=0.5
+│   ├── epsilon_0_5_optimal.png
+│   ├── epsilon_0_5_regret.png
+│   ├── epsilon_comparison_reward.png    # Comparison of all ε values
+│   ├── epsilon_comparison_optimal.png
+│   └── epsilon_comparison_regret.png
+│
+├── ucb/
+│   ├── ucb_0_5_reward.png               # Individual plots for c=0.5
+│   ├── ucb_0_5_optimal.png
+│   ├── ucb_0_5_regret.png
+│   ├── ucb_1_0_reward.png               # Individual plots for c=1.0
+│   ├── ucb_1_0_optimal.png
+│   ├── ucb_1_0_regret.png
+│   ├── ucb_2_0_reward.png               # Individual plots for c=2.0
+│   ├── ucb_2_0_optimal.png
+│   ├── ucb_2_0_regret.png
+│   ├── ucb_3_0_reward.png               # Individual plots for c=3.0
+│   ├── ucb_3_0_optimal.png
+│   ├── ucb_3_0_regret.png
+│   ├── ucb_5_0_reward.png               # Individual plots for c=5.0
+│   ├── ucb_5_0_optimal.png
+│   ├── ucb_5_0_regret.png
+│   ├── ucb_comparison_reward.png        # Comparison of all c values
+│   ├── ucb_comparison_optimal.png
+│   └── ucb_comparison_regret.png
+│
+└── comparison/
+    ├── best_comparison_reward.png       # Best ε vs Best c
+    ├── best_comparison_optimal.png
+    ├── best_comparison_regret.png
+    ├── all_comparison_reward.png        # All ε vs All c
+    ├── all_comparison_optimal.png
+    └── all_comparison_regret.png
 ```
 
-- `percent_optimal.png` shows convergence points with vertical dashed lines  
-- All plots are high-resolution (dpi=180) and publication-ready
+**Total plots generated: 42**
+- 15 individual Epsilon-Greedy plots (5 ε × 3 metrics)
+- 3 Epsilon-Greedy comparison plots
+- 15 individual UCB plots (5 c × 3 metrics)
+- 3 UCB comparison plots
+- 6 algorithm comparison plots
+
+All plots are high-resolution (dpi=150) and publication-ready.
+
+---
 
 ### Part 5: Structure
+
 ```
-text├── bandit.py      # Bandit environment (Bernoulli & Gaussian)
-├── agent.py       # ε-greedy and UCB agent implementation
-├── config.py      # Hyperparameters and experiment configurations
-├── plot.py        # All plotting functions
-├── main.py        # Main simulation loop and result generation
-└── figures/       # Generated plots (bernoulli/ & gaussian/)
+.
+├── bandit.py                      # Bandit environment (Bernoulli rewards)
+├── agents.py                      # ε-greedy and UCB agent implementation
+├── utils.py                       # Simulation runners and analysis functions
+├── experiment_epsilon_greedy.py   # Epsilon-greedy experiments
+├── experiment_ucb.py              # UCB experiments
+├── run_all_experiments.py         # Main simulation loop and result generation
+└── output/                        # Generated plots
+    ├── epsilon_greedy/            # Epsilon-greedy results
+    ├── ucb/                       # UCB results
+    └── comparison/                # Algorithm comparison plots
 ```
