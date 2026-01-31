@@ -1,8 +1,8 @@
-# FRA503 – Deep Reinforcement Learning  
-## Homework 1: Multi-Armed Bandit
+# Homework 1: Multi-Armed Bandit
 
 ### Author
-Student Solution
+Chantouch Orungrote (66340500011)
+Sasish Kaewsing (663405800076)
 
 ---
 
