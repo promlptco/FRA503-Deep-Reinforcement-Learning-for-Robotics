@@ -122,18 +122,3 @@ UCB generally converges faster and achieves higher final % optimal action than �
 ├── main.py        # Main simulation loop and result generation
 └── figures/       # Generated plots (bernoulli/ & gaussian/)
 ```
-
-## License
-
-MIT License – for educational use only.
-
----
-**Homework 1 – Multi-Armed Bandit – Completed**
-```
-
-You can copy this content directly into a file named `README.md` in your project root.
-
-If your instructor requires additional sections (e.g., more detailed mathematical explanation, regret comparison table, or screenshots), let me know and I can extend it.
-
-Good luck with your submission!  
-This README should help make your work look very professional and well-organized.
