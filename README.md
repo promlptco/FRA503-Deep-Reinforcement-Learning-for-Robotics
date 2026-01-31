@@ -28,32 +28,32 @@ Training metrics (cumulative reward, episode length, etc.) are monitored via **T
 **Question 1:** Where to edit environment configuration, action space, observation space, reward function, or termination condition?
 **Answer:** `IsaacLab/source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/cartpole_env_cfg.py`
 
-* Environment config: `CartpoleEnvCfg` class
-* Action space: `ActionsCfg`
-* Observation space: `ObservationsCfg`
-* Rewards: `RewardCfg`
-* Terminations: `TerminationsCfg`
+- Environment config: `CartpoleEnvCfg` class
+- Action space: `ActionsCfg`
+- Observation space: `ObservationsCfg`
+- Rewards: `RewardCfg`
+- Terminations: `TerminationsCfg`
 
 **Question 2:** Action space and observation space?
 **Answer:**
 
-* **Action space**: Joint effort force on `slide_to_cart`, scaled by 100.0
-* **Observation space**: $(x,\ \dot{x},\ \theta,\ \dot{\theta})$
+- **Action space**: Joint effort force on `slide_to_cart`, scaled by 100.0
+- **Observation space**: $(x,\ \dot{x},\ \theta,\ \dot{\theta})$
 
 **Question 3:** Episode termination conditions?
 **Answer:**
 
-* Time out (max episode length reached)
-* Cart out of bounds $(|\text{slider_to_cart}| > 3.0)$
+- Time out (max episode length reached)
+- Cart out of bounds $(|\text{slider_to_cart}| > 3.0)$
 
 **Question 4:** Number of reward terms?
 **Answer:** 5 reward terms (default weights shown):
 
-* +1.0 Constant running reward (alive/staying alive)
-* -2.0 Termination penalty
-* -1.0 Pole position penalty (primary task)
-* -0.01 Cart velocity penalty (shaping)
-* -0.005 Pole angular velocity penalty (shaping)
+- +1.0 Constant running reward (alive/staying alive)
+- -2.0 Termination penalty
+- -1.0 Pole position penalty (primary task)
+- -0.01 Cart velocity penalty (shaping)
+- -0.005 Pole angular velocity penalty (shaping)
 
 ---
 
