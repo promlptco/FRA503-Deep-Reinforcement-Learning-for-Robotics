@@ -1,18 +1,16 @@
 # Homework 1: Multi-Armed Bandit
 
 ### Author
-Chantouch Orungrote (66340500011)
-Sasish Kaewsing (663405800076)
+- Chantouch Orungrote (66340500011)
+- Sasish Kaewsing (663405800076)
 
 ---
 
 ## Objective
 
-Implement a **multi-armed bandit framework from scratch** and compare:
+Implement a **multi-armed bandit framework from scratch** and using:
 - **Epsilon-Greedy**
 - **Upper Confidence Bound (UCB)**
-
-using reward-based performance and convergence behavior.
 
 ---
 
