@@ -21,16 +21,16 @@ This project explores the **Isaac-CartPole-v0** environment using reinforcement 
 
 ### State
 
-[x, ẋ, θ, θ̇]
+[cart_pos, cart_vel, pole_pos, pole_vel]
 
 ### Action
 
-* Continuous horizontal force (scaled by 100.0)
+- Continuous horizontal force (scaled by 100.0)
 
 ### Termination
 
-* Episode timeout
-* Cart out of bounds: (|x| > 3.0)
+- Episode timeout
+- Cart out of bounds: (|x| > 3.0)
 
 ---
 
@@ -45,22 +45,3 @@ This project explores the **Isaac-CartPole-v0** environment using reinforcement 
 | Pole angular velocity penalty | −0.005 |
 
 ---
-
-## Reward Experiments
-
-A baseline model trained for **448k steps** was evaluated with modified reward weights.
-
-**Key observations:**
-
-* Removing alive reward → immediate failure
-* Strong pole position penalty → most stable control
-* Excessive penalties → conservative or unstable behavior
-
----
-
-## RL Mapping
-
-* **Agent:** Policy network
-* **State:** [x, ẋ, θ, θ̇]
-* **Action:** Cart force
-* **Reward:** Survival + stability penalties
