@@ -44,7 +44,7 @@ Training metrics (cumulative reward, episode length, etc.) are monitored via **T
 **Answer:**
 
 - Time out (max episode length reached)
-- Cart out of bounds $(|\text{slider_to_cart}| > 3.0)$
+- Cart out of bounds $(|\texttt{slider\_to\_cart}| > 3.0)$
 
 **Question 4:** Number of reward terms?
 **Answer:** 5 reward terms (default weights shown):
@@ -79,6 +79,8 @@ Baseline model at 448,000 steps is used. Experiments adjust one reward weight at
 
 **Conclusion**: Alive reward is the core motivation; extreme scaling leads to unstable policies.
 
+---
+
 ### 2.2 Experiment 2: Termination Penalty (-2.0)
 
 **Hypothesis**: 0.0 → reduced failure avoidance; -2.0 → balanced; -20.0 → conservative/fast stabilization.
@@ -90,6 +92,8 @@ Baseline model at 448,000 steps is used. Experiments adjust one reward weight at
 * **-20.0**: Volatile training, extremely conservative policy, rigid/fast pole locking.
 
 **Conclusion**: Termination penalty drives risk sensitivity; higher values yield conservative control.
+
+---
 
 ### 2.3 Experiment 3: Pole Position Penalty (-1.0)
 
@@ -103,6 +107,8 @@ Baseline model at 448,000 steps is used. Experiments adjust one reward weight at
 
 **Conclusion**: Pole penalty dominates upright task; null weight still forces some control via termination avoidance.
 
+---
+
 ### 2.4 Experiment 4: Cart Velocity Penalty (-0.01)
 
 **Hypothesis**: 0.0 → variable/aggressive moves; -0.01 → smooth; -0.1 → overly constrained.
@@ -114,6 +120,8 @@ Baseline model at 448,000 steps is used. Experiments adjust one reward weight at
 * **-0.1**: Longest recovery, highly conservative (near-stationary cart).
 
 **Conclusion**: Velocity shaping encourages smooth motion; excessive penalty restricts necessary corrections.
+
+---
 
 ### 2.5 Experiment 5: Pole Angular Velocity Penalty (-0.005)
 
