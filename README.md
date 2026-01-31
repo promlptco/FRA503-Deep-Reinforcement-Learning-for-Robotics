@@ -59,18 +59,8 @@ Reward Weight Experimental Set:
 
 ---
 
-## Reinforcement Learning Fundamentals
-- **Agent:** Cart controller  
-- **State:** Cart and pole positions & velocities  
-- **Action:** Force applied to cart  
-- **Reward:** Scalar feedback  
-- **Policy:** \( \pi(s) \rightarrow a \)  
-- **Value Function:** Expected return from a state  
-
----
-
 ## Report
-Full results, plots, and analysis are available in:
+All results, plots, and analysis are available in:
 ```
 HW0_DRL_6611_6676.pdf
 ```
