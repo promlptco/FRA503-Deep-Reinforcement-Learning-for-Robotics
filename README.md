@@ -28,7 +28,7 @@ Training metrics (cumulative reward, episode length, etc.) are monitored via **T
 **Question 2:** Action space and observation space?  
 **Answer:**  
 - **Action space**: Single continuous value (joint effort force on `slide_to_cart`, scaled by 100.0).  
-- **Observation space**: 4D continuous vector (cart position x, pole angle θ, cart velocity ẋ, pole angular velocity θ̇).
+- **Observation space**: 4D continuous vector (cart position $x$, pole angle θ, cart velocity ẋ, pole angular velocity θ̇).
 
 **Question 3:** Episode termination conditions?  
 **Answer:**  
