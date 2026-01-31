@@ -57,7 +57,7 @@ CONFIGS = (
 ```
 ---
 
-### Part 4: File Structure
+### Part 4: Results Location
 
 All outputs are saved in the `figures/` folder, separated by reward type:
 
@@ -65,7 +65,7 @@ All outputs are saved in the `figures/` folder, separated by reward type:
 figures/
 ├── bernoulli/
 │   ├── average_reward.png
-│   ├── percent_optimal.png           ← with convergence markers
+│   ├── percent_optimal.png           # with convergence markers
 │   ├── cumulative_regret.png
 │   ├── action_selection_eps_best.png
 │   └── action_selection_ucb_best.png
@@ -79,3 +79,13 @@ figures/
 
 - `percent_optimal.png` shows convergence points with vertical dashed lines  
 - All plots are high-resolution (dpi=180) and publication-ready
+
+### Part 5: Structure
+```
+text├── bandit.py      # Bandit environment (Bernoulli & Gaussian)
+├── agent.py       # ε-greedy and UCB agent implementation
+├── config.py      # Hyperparameters and experiment configurations
+├── plot.py        # All plotting functions
+├── main.py        # Main simulation loop and result generation
+└── figures/       # Generated plots (bernoulli/ & gaussian/)
+```
