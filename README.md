@@ -1,66 +1,91 @@
-# Homework 0: Cartpole RL Agent
+# Homework 1: Multi-Armed Bandit
 
-**Authors**
-- Chantouch Orungrote (66340500011)  
-- Sasish Keawsing (66340500076)
+**Authors**  
+- Chantouch Orungrote (6340500011)  
+- Sasish Kaewsing (6340500076)
 
----
-
-## Objective
-
-This homework studies the **Isaac-Cartpole-v0** reinforcement learning task to:
-- Understand environment structure and RL components
-- Analyze action space, observation space, rewards, and termination
-- Experiment with **reward weight tuning**
-- Relate practical results to **reinforcement learning fundamentals**
+## Goal
+Implement a multi-armed bandit framework from scratch, including ε-greedy and UCB algorithms, run systematic experiments on both Bernoulli and Gaussian environments, visualize performance, and determine convergence time.
 
 ---
 
-### Config file
+### Part 1: Setup and Run
+
+1. Open terminal in the project folder
+2. Install dependencies:
+   ```bash
+   pip install numpy matplotlib
+   ```
+3. Run the experiment:
+   ```bash
+   python main.py
+   ```
+   
+---
+
+### Part 2: Parameter Definition
+
+| Parameter               | Default | Description |
+|-------------------------|---------|-------------|
+| N_ARMS                  | 10      | Number of arms |
+| N_RUNS                  | 2000    | Number of independent runs (for averaging) |
+| N_STEPS                 | 1000    | Timesteps per experiment |
+| REWARD_TYPES            | ["bernoulli", "gaussian"] | Reward distributions to compare |
+| EPSILON_VALS            | [0.0, 0.01, 0.05, 0.1, 0.5] | Exploration rates for ε-greedy |
+| UCB_C_VALS              | [0.0, 0.5, 1.0, 2.0, 5.0] | Exploration constants for UCB |
+| CONVERGENCE_THRESHOLD   | 0.85    | Threshold for convergence (85% optimal action) |
+| ROLLING_WINDOW          | 50      | Window size for rolling average |
+
+**Convergence definition**:  
+The first timestep where the 50-step rolling average of % optimal action ≥ 85% and remains ≥ 85% until the end.
+
+---
+
+### Part 3: Configuration
+
+All experiment configurations are defined in `config.py`:
+
+```python
+# Main configurations
+EPSILON_VALS = [0.0, 0.01, 0.05, 0.1, 0.5]
+UCB_C_VALS   = [0.5, 1.0, 1.5, 2.0, 5.0]
+
+CONFIGS = (
+    [("eps", {"epsilon": eps}) for eps in EPSILON_VALS] +
+    [("ucb", {"c": c}) for c in UCB_C_VALS]
+)
 ```
-IsaacLab/source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/cartpole_env_cfg.py
-```
-
-### Action Space
-- Horizontal force applied to the cart joint (`joint_effort`)
-
-### Observation Space
-`[x,x_dot,theta,theta_dot]`
-  
-### Termination Conditions
-- Episode timeout (300 timesteps)
-- cart_pos (`x`) outside `[-3.0, 3.0]`
-
-### Reward Terms (Default values)
-- Alive reward (+1.0)
-- Termination penalty (-2.0)
-- Pole position penalty (-1.0)
-- Cart velocity penalty (-0.01)
-- Pole angular velocity penalty (-0.005)
-
 ---
 
-## Experiments
-Agent behavior changes directly with reward design, confirming the **Reward Hypothesis**.
-- **Baseline model:** Default model @448,000 timesteps
-- **Single episode:** 300 timesteps
+### Part 4: Results Location
 
-Experimental Design:
-- `0.0` (non-significant)
-- Default value
-- `10×` (highly significant)
+All outputs are saved in the `figures/` folder, separated by reward type:
 
-Reward Weight Experimental Set:
-1. Alive reward `[0.0, 1.0, 10.0]`
-2. Termination penalty `[0.0, -2.0, -20.0]`
-3. Pole position penalty `[0.0, -1.0, -10.0]`
-4. Cart velocity penalty `[0.0, -0.01, -0.1]`
-5. Pole angular velocity penalty `[0.0, -0.005, -0.05]`
-
----
-
-## Report
-All results, plots, and analysis are available in:
 ```
-HW0_DRL_6611_6676.pdf
+figures/
+├── bernoulli/
+│   ├── average_reward.png
+│   ├── percent_optimal.png           # with convergence markers
+│   ├── cumulative_regret.png
+│   ├── action_selection_eps_best.png
+│   └── action_selection_ucb_best.png
+└── gaussian/
+    ├── average_reward.png
+    ├── percent_optimal.png
+    ├── cumulative_regret.png
+    ├── action_selection_eps_best.png
+    └── action_selection_ucb_best.png
+```
+
+- `percent_optimal.png` shows convergence points with vertical dashed lines  
+- All plots are high-resolution (dpi=180) and publication-ready
+
+### Part 5: Structure
+```
+text├── bandit.py      # Bandit environment (Bernoulli & Gaussian)
+├── agent.py       # ε-greedy and UCB agent implementation
+├── config.py      # Hyperparameters and experiment configurations
+├── plot.py        # All plotting functions
+├── main.py        # Main simulation loop and result generation
+└── figures/       # Generated plots (bernoulli/ & gaussian/)
 ```
