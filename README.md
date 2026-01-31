@@ -75,5 +75,5 @@ Agent behavior changes directly with reward design, confirming the **Reward Hypo
 ## Report
 Full results, plots, and analysis are available in:
 ```
-report/HW0_DRL_6611_6676.pdf
+HW0_DRL_6611_6676.pdf
 ```
