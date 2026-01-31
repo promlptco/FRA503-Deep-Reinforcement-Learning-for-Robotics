@@ -17,19 +17,12 @@ This homework studies the **Isaac-Cartpole-v0** reinforcement learning task to:
 
 ---
 
-## Environment
-
-**Task:** Isaac-Cartpole-v0  
-**Config file:**
+## Config file
 ```
-
-IsaacLab/source/isaaclab_tasks/isaaclab_tasks/
-manager_based/classic/cartpole/cartpole_env_cfg.py
-
+IsaacLab/source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/cartpole_env_cfg.py
 ```
 
 ### Action Space
-- Continuous (1D)
 - Horizontal force applied to the cart joint (`joint_effort`)
 
 ### Observation Space
@@ -43,7 +36,7 @@ manager_based/classic/cartpole/cartpole_env_cfg.py
 - Episode timeout
 - Cart position outside `[-3.0, 3.0]`
 
-### Reward Terms
+### Reward Terms (Default)
 - Alive reward (+1.0)
 - Termination penalty (-2.0)
 - Pole position penalty (-1.0)
@@ -53,11 +46,10 @@ manager_based/classic/cartpole/cartpole_env_cfg.py
 ---
 
 ## Experiments
+**Baseline model:** Default model @448,000 timesteps
+**Single episode:** 300 timesteps
 
-**Baseline model:** 448,000 training steps  
-**Observation horizon:** 300 timesteps  
-
-Five reward-weight experiments were conducted:
+Reward-weight experiments were conducted:
 1. Alive reward
 2. Termination penalty
 3. Pole position penalty
@@ -65,9 +57,9 @@ Five reward-weight experiments were conducted:
 5. Pole angular velocity penalty
 
 Each reward was tested at:
-- `0.0` (removed)
+- `0.0` (non-significant)
 - Default value
-- `10×` default
+- `10×` default (highly significant)
 
 **Key Result:**  
 Agent behavior changes directly with reward design, confirming the **Reward Hypothesis**.
@@ -75,7 +67,6 @@ Agent behavior changes directly with reward design, confirming the **Reward Hypo
 ---
 
 ## Reinforcement Learning Fundamentals
-
 - **Agent:** Cart controller  
 - **State:** Cart and pole positions & velocities  
 - **Action:** Force applied to cart  
@@ -86,22 +77,7 @@ Agent behavior changes directly with reward design, confirming the **Reward Hypo
 ---
 
 ## Report
-
 Full results, plots, and analysis are available in:
-
 ```
-
 report/HW0_DRL_6611_6676.pdf
-
 ```
-
----
-
-## License
-
-Educational use only (FRA503 coursework)
-```
-
----
-
-If you want an **even more minimal (submission-only) version** or one that **exactly matches a TA checklist**, I can compress it further.
