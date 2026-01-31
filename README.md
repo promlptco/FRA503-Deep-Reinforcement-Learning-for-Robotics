@@ -1,68 +1,88 @@
-# Homework 0: Cartpole Exploration
+# Homework 0: CartPole Exploration
 
-**Authors:** 
+**Authors**
 - Chantouch Orungrote (66340500011)
 - Sasish Keawsing (66340500076)
 
+---
+
 ## Overview
-Exploration of Isaac-Cartpole-v0 environment using reinforcement learning. Part 1 examines default setup, Part 2 experiments with reward weights, Part 3 maps RL fundamentals.
+
+This project explores the **Isaac-CartPole-v0** environment using reinforcement learning. We analyze the default setup, study the impact of reward shaping, and relate the implementation to core RL concepts.
 
 ---
 
-## Part 1: Cartpole RL Agent
+## Environment
 
-### Training Setup
-- Environment: Isaac-Cartpole-v0 in Isaac Sim
-- Configuration file: `isaaclab_tasks/manager_based/classic/cartpole/cartpole_env_cfg.py`
+* **Simulator:** Isaac Sim
+* **Task:** Isaac-CartPole-v0
+* **Config:**
+  `isaaclab_tasks/manager_based/classic/cartpole/cartpole_env_cfg.py`
 
-### Configurations
-- **Action Space:** Continuous force on cart (scaled by 100.0)
-- **Observation Space:** 4D vector [`cart pos, pole pos, cart vel, pole vel`]
-- **Termination:** Timeout or cart out of bounds (|x| > 3.0)
-- **Rewards (5 terms):**
-  - +1.0 Alive reward
-  - -2.0 Termination penalty
-  - -1.0 Pole position penalty
-  - -0.01 Cart velocity penalty
-  - -0.005 Pole angular velocity penalty
+### State
 
----
+[
+[x,\ \theta,\ \dot{x},\ \dot{\theta}]
+]
 
-## Part 2: Reward Weight Experiments
+### Action
 
-Baseline model (448k steps) tested with individual weight modifications (0.0 or ×10).
+* Continuous horizontal force (scaled by 100.0)
 
-### Results
+### Termination
 
-| Experiment | Weight Adjust | Behavior |
-|------------|---------------|--------------|
-| Alive Reward | 0.0 / +10.0 | 0.0 → immediate failure; +10.0 → unstable survival-focused policy |
-| Termination Penalty | 0.0 / -20.0 | 0.0 → less refined; -20.0 → overly conservative |
-| Pole Position | 0.0 / -10.0 | 0.0 → chaotic oscillations; -10.0 → most stable control |
-| Cart Velocity | 0.0 / -0.1 | 0.0 → aggressive moves; -0.1 → overly constrained |
-| Pole Angular Velocity | 0.0 / -0.05 | 0.0 → noisy oscillations; -0.05 → slow, damped response |
+* Episode timeout
+* Cart out of bounds: (|x| > 3.0)
 
 ---
 
-## Part 3: RL Fundamentals
+## Reward Function
 
-### Core Components
-- **Agent:** Policy network controlling cart force
-- **State:** (x, ẋ, θ, θ̇)
-- **Action:** Horizontal force
-- **Reward:** Positive for upright pole, penalties for deviation/termination
+| Term                          | Weight |
+| ----------------------------- | ------ |
+| Alive reward                  | +1.0   |
+| Termination penalty           | −2.0   |
+| Pole position penalty         | −1.0   |
+| Cart velocity penalty         | −0.01  |
+| Pole angular velocity penalty | −0.005 |
 
-### Key Concepts
+---
 
-| Concept | Definition | Scope |
-|---------|------------|-------|
-| Reward (R) | Immediate feedback | Single timestep |
-| Return (G) | Cumulative discounted reward | Episode |
-| Value (V) | Expected future return | Long-term |
+## Reward Experiments
 
-### Mathematical Functions
+A baseline model trained for **448k steps** was evaluated with modified reward weights.
 
-- **Policy:** π(s) → a
-- **Value:** V^π(s) = E[G_t | s, π]
-- **Transition:** P(s' | s, a)
-- **Reward Model:** R(s, a)
+**Key observations:**
+
+* Removing alive reward → immediate failure
+* Strong pole position penalty → most stable control
+* Excessive penalties → conservative or unstable behavior
+
+---
+
+## RL Mapping
+
+* **Agent:** Policy network
+* **State:** ((x,\ \dot{x},\ \theta,\ \dot{\theta}))
+* **Action:** Cart force
+* **Reward:** Survival + stability penalties
+
+[
+\pi(s) \rightarrow a,\quad
+V^\pi(s) = \mathbb{E}[G_t \mid s,\pi]
+]
+
+---
+
+## Takeaway
+
+Balanced reward shaping—especially pole position control—is critical for stable learning in continuous control tasks.
+
+---
+
+If you want, I can:
+
+* Add **training curves / gifs**
+* Make this **even shorter**
+* Write a **one-paragraph project description**
+* Align it with **course submission guidelines**
