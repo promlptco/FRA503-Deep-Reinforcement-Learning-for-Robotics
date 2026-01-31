@@ -44,7 +44,8 @@ Implement a multi-armed bandit framework from scratch, including ε-greedy and U
 | EPSILON_VALS            | [0.0, 0.01, 0.05, 0.1, 0.5] | Exploration rates for ε-greedy |
 | UCB_C_VALS              | [0.5, 1.0, 2.0, 3.0, 5.0] | Exploration constants for UCB |
 
-**Note: Random seed (42) for all experiments**
+#### **Note: Random seed (42) for all experiments**
+
 ---
 
 ### Part 3: Configuration
