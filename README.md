@@ -21,9 +21,7 @@ This project explores the **Isaac-CartPole-v0** environment using reinforcement 
 
 ### State
 
-[
-[x,\ \theta,\ \dot{x},\ \dot{\theta}]
-]
+[x, ẋ, θ, θ̇]
 
 ### Action
 
@@ -63,26 +61,6 @@ A baseline model trained for **448k steps** was evaluated with modified reward w
 ## RL Mapping
 
 * **Agent:** Policy network
-* **State:** ((x,\ \dot{x},\ \theta,\ \dot{\theta}))
+* **State:** [x, ẋ, θ, θ̇]
 * **Action:** Cart force
 * **Reward:** Survival + stability penalties
-
-[
-\pi(s) \rightarrow a,\quad
-V^\pi(s) = \mathbb{E}[G_t \mid s,\pi]
-]
-
----
-
-## Takeaway
-
-Balanced reward shaping—especially pole position control—is critical for stable learning in continuous control tasks.
-
----
-
-If you want, I can:
-
-* Add **training curves / gifs**
-* Make this **even shorter**
-* Write a **one-paragraph project description**
-* Align it with **course submission guidelines**
