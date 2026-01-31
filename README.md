@@ -1,4 +1,4 @@
-# FRA 503: Deep Reinforcement Learning – Homework 0
+# FRA503: Deep Reinforcement Learning – HW0
 
 ## Abstract
 This project studies how **reward** affects the behavior and performance of a reinforcement learning (RL) agent in the **Isaac-Cartpole-v0** environment.
