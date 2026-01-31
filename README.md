@@ -44,7 +44,7 @@ Training metrics (cumulative reward, episode length, etc.) are monitored via **T
 **Answer:**
 
 - Time out (max episode length reached)
-- Cart out of bounds $(|\mathrm{slider\_to\_cart}| > 3.0)$
+- Cart out of bounds (|slide_to_cart| > 3.0)
 
 **Question 4:** Number of reward terms?
 **Answer:** 5 reward terms (default weights shown):
