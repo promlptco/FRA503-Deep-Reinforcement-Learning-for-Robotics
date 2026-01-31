@@ -1,21 +1,17 @@
-# Multi-Armed Bandit - Homework 1
+# Homework 1: Multi-Armed Bandit
+
+### Author
+- Chantouch Orungrote (66340500011)
+- Sasish Kaewsing (66340500076)
+
+---
 
 ## Overview
-This project implements and compares two classic reinforcement learning algorithms for solving the multi-armed bandit problem: **Epsilon-Greedy** and **Upper Confidence Bound (UCB)**.
-
-**What is Multi-Armed Bandit?**
-Imagine you're at a casino with 10 slot machines (bandits). Each machine has a different hidden probability of winning. Your goal is to figure out which machine is best while maximizing your total winnings. Should you keep trying the machine that seems best (exploit) or try other machines to see if they're better (explore)?
+Implements 2 algorithms for solving the multi-armed bandit problem: **Epsilon-Greedy** and **Upper Confidence Bound (UCB)**.
 
 ---
 
 ## Part 1: Setup
-
-### Prerequisites
-- Python 3.7 or higher
-- Required packages:
-  - numpy
-  - matplotlib
-
 ### Installation
 
 1. **Install Python packages:**
@@ -26,24 +22,17 @@ pip install numpy matplotlib
 2. **Download the code:**
 Save the provided Python script as `bandit_experiment.py`
 
-3. **Verify setup:**
-```bash
-python --version  # Should show Python 3.7+
-python -c "import numpy, matplotlib; print('Setup OK!')"
-```
-
 ### Project Structure
 ```
 project/
 ├── bandit_experiment.py    # Main script
-└── output/                 # Generated plots (created automatically)
+└── output/                 # Generated plots
     ├── reward_comparison.png
     ├── epsilon_greedy_actions.png
     ├── ucb_actions.png
     ├── action_comparison.png
     └── cumulative_reward.png
 ```
-
 ---
 
 ## Part 2: Understanding Parameters
