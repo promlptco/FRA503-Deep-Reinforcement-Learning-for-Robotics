@@ -1,4 +1,4 @@
-# Homework 0: Cartpole RL Agent
+# Homework 0: Cartpole Exploration
 
 **Authors:** 
 - Chantouch Orungrote (66340500011)
@@ -7,7 +7,9 @@
 ## Overview
 Exploration of Isaac-Cartpole-v0 environment using reinforcement learning. Part 1 examines default setup, Part 2 experiments with reward weights, Part 3 maps RL fundamentals.
 
-## Part 1: Default Agent Analysis
+---
+
+## Part 1: Cartpole RL Agent
 
 ### Training Setup
 - Environment: Isaac-Cartpole-v0 in Isaac Sim
@@ -24,13 +26,15 @@ Exploration of Isaac-Cartpole-v0 environment using reinforcement learning. Part 
   - -0.01 Cart velocity penalty
   - -0.005 Pole angular velocity penalty
 
+---
+
 ## Part 2: Reward Weight Experiments
 
 Baseline model (448k steps) tested with individual weight modifications (0.0 or ×10).
 
-### Results Summary
+### Results
 
-| Experiment | Weight Change | Key Findings |
+| Experiment | Weight Adjust | Behavior |
 |------------|---------------|--------------|
 | Alive Reward | 0.0 / +10.0 | 0.0 → immediate failure; +10.0 → unstable survival-focused policy |
 | Termination Penalty | 0.0 / -20.0 | 0.0 → less refined; -20.0 → overly conservative |
@@ -38,11 +42,11 @@ Baseline model (448k steps) tested with individual weight modifications (0.0 or 
 | Cart Velocity | 0.0 / -0.1 | 0.0 → aggressive moves; -0.1 → overly constrained |
 | Pole Angular Velocity | 0.0 / -0.05 | 0.0 → noisy oscillations; -0.05 → slow, damped response |
 
-**Key Insight:** Balanced default weights yield optimal performance; extreme scaling produces unstable or overly conservative policies.
+---
 
 ## Part 3: RL Fundamentals
 
-### Core Components (Cartpole Context)
+### Core Components
 - **Agent:** Policy network controlling cart force
 - **State:** (x, ẋ, θ, θ̇)
 - **Action:** Horizontal force
@@ -62,6 +66,3 @@ Baseline model (448k steps) tested with individual weight modifications (0.0 or 
 - **Value:** V^π(s) = E[G_t | s, π]
 - **Transition:** P(s' | s, a)
 - **Reward Model:** R(s, a)
-
-## Conclusion
-Reward engineering critically shapes agent behavior. Survival terms drive longevity, penalties enforce stability, and balanced design achieves smooth, effective control.
