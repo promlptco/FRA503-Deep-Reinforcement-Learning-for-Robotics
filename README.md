@@ -41,23 +41,21 @@ IsaacLab/source/isaaclab_tasks/isaaclab_tasks/manager_based/classic/cartpole/car
 ---
 
 ## Experiments
+Agent behavior changes directly with reward design, confirming the **Reward Hypothesis**.
 - **Baseline model:** Default model @448,000 timesteps
 - **Single episode:** 300 timesteps
 
-Reward-weight experiments were conducted:
-1. Alive reward
-2. Termination penalty
-3. Pole position penalty
-4. Cart velocity penalty
-5. Pole angular velocity penalty
-
-Each reward was tested at:
+Experimental Design:
 - `0.0` (non-significant)
 - Default value
-- `10×` default (highly significant)
+- `10×` (highly significant)
 
-**Key Result:**  
-Agent behavior changes directly with reward design, confirming the **Reward Hypothesis**.
+Reward Weight Experimental Set:
+1. Alive reward `[0.0, 1.0, 10.0]`
+2. Termination penalty `[0.0, -2.0, -20.0]`
+3. Pole position penalty `[0.0, -1.0, -10.0]`
+4. Cart velocity penalty `[0.0, -0.01, -0.1]`
+5. Pole angular velocity penalty `[0.0, -0.005, -0.05]`
 
 ---
 
