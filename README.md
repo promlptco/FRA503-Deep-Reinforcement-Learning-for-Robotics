@@ -41,7 +41,7 @@ The first timestep where the 50-step rolling average of % optimal action ≥ 85%
 
 ---
 
-### Part 3: Config
+### Part 3: Configuration
 
 All experiment configurations are defined in `config.py`:
 
@@ -57,7 +57,7 @@ CONFIGS = (
 ```
 ---
 
-### Part 4: Where is it saved and structure of files
+### Part 4: File Structure
 
 All outputs are saved in the `figures/` folder, separated by reward type:
 
