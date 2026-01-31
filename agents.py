@@ -1,53 +1,15 @@
-"""
-agents.py
-
-Agent classes for multi-armed bandit problem.
-Includes Epsilon-Greedy and UCB algorithms.
-
-FRA 503 Homework 1
-"""
 import numpy as np
 
 
-class EpsilonGreedyAgent:
-    """
-    Agent using Epsilon-Greedy algorithm.
-    
-    With probability epsilon, the agent explores (random action).
-    With probability (1-epsilon), the agent exploits (best known action).
-    """
-    
+class EpsilonGreedyAgent:    
     def __init__(self, n_actions, epsilon):
-        """
-        Initialize the epsilon-greedy agent.
-        
-        Args:
-            n_actions (int): Number of available actions (arms)
-            epsilon (float): Exploration probability [0, 1]
-                           0.0 = pure exploitation (greedy)
-                           1.0 = pure exploration (random)
-        
-        Example:
-            agent = EpsilonGreedyAgent(n_actions=10, epsilon=0.1)
-        """
         self.n_actions = n_actions
         self.epsilon = epsilon
-        
         # Learnable parameters
         self.Q = np.zeros(n_actions, dtype=np.float64)  # Action-value estimates
         self.N = np.zeros(n_actions, dtype=np.int32)    # Action counts
     
     def select_action(self):
-        """
-        Select an action using epsilon-greedy policy.
-        
-        Returns:
-            int: Selected action index
-        
-        Policy:
-            - With probability epsilon: select random action (explore)
-            - With probability (1-epsilon): select best action (exploit)
-        """
         if np.random.random() < self.epsilon:
             # Explore: choose random action
             return np.random.randint(self.n_actions)
@@ -58,32 +20,17 @@ class EpsilonGreedyAgent:
             return np.random.choice(best_actions)
     
     def update(self, action, reward):
-        """
-        Update action-value estimates using incremental average.
-        
-        Args:
-            action (int): Action that was taken
-            reward (float): Reward that was received
-        
-        Update rule:
-            Q(a) ← Q(a) + 1/N(a) * (reward - Q(a))
-        
-        This is the incremental formula for computing the average reward.
-        """
         self.N[action] += 1
         alpha = 1.0 / self.N[action]  # Step size (decreases over time)
         self.Q[action] += alpha * (reward - self.Q[action])
     
     def get_Q_values(self):
-        """Get current Q-value estimates."""
         return self.Q.copy()
     
     def get_action_counts(self):
-        """Get count of times each action was selected."""
         return self.N.copy()
     
     def __str__(self):
-        """String representation of the agent."""
         return f"EpsilonGreedyAgent(n_actions={self.n_actions}, epsilon={self.epsilon})"
 
 
