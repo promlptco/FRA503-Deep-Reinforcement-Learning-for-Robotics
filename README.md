@@ -9,10 +9,10 @@ This project studies how **reward** affects the behavior and performance of a re
 - **Simulator**: NVIDIA Isaac Sim  
 - **Task**: Isaac-Cartpole-v0  
 - **Observation Space**:  
-  - Cart position \(x\)  
-  - Cart velocity \(\dot{x}\)  
-  - Pole angle \(\theta\)  
-  - Pole angular velocity \(\dot{\theta}\)
+  - Cart position
+  - Cart velocity 
+  - Pole angle  
+  - Pole angular velocity
 - **Action Space**:  
   - Horizontal force applied to the cart
 
