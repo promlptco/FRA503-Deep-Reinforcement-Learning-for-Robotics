@@ -1,8 +1,8 @@
 # Homework 1: Multi-Armed Bandit
 
 **Authors**  
-- Chantouch Orungrote (6340500011)  
-- Sasish Kaewsing (6340500076)
+- Chantouch Orungrote (66340500011)  
+- Sasish Kaewsing (66340500076)
 
 ## Objectives
 Implement a multi-armed bandit framework from scratch, including ε-greedy and UCB algorithms, run systematic experiments with multiple parameter values, visualize performance across all configurations, and analyze convergence behavior and cumulative regret.
