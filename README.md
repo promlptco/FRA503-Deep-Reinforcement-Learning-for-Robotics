@@ -1,4 +1,4 @@
-# Homework 2: Cart Pole
+# Homework 2: Cart Pole.
 
 **Authors**  
 - Chantouch Orungrote (66340500011)  
